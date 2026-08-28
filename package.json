@@ -1,0 +1,25 @@
+{
+  "name": "royal-spin-demo",
+  "version": "1.0.0",
+  "private": true,
+  "type": "module",
+  "scripts": {
+    "dev": "vite",
+    "build": "npm run typecheck && vite build",
+    "preview": "vite preview",
+    "typecheck": "tsc --noEmit",
+    "test:compile": "tsc src/game-model.ts --outDir .test-build --target ES2022 --module ES2022 --moduleResolution Bundler --skipLibCheck",
+    "test": "npm run test:compile && node --test tests/game-model.test.mjs"
+  },
+  "dependencies": {
+    "react": "19.2.6",
+    "react-dom": "19.2.6"
+  },
+  "devDependencies": {
+    "@types/react": "19.2.14",
+    "@types/react-dom": "19.2.3",
+    "@vitejs/plugin-react": "6.0.2",
+    "typescript": "5.9.3",
+    "vite": "8.2.2"
+  }
+}
