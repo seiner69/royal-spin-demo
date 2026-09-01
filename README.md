@@ -1,58 +1,58 @@
-# Royal Spin Demo
+# Royal Spin Demo（虚拟筹码老虎机界面）
 
-Royal Spin Demo is a responsive slot-machine interface built for front-end state, animation, audio, and accessibility experiments. It uses virtual chips only: there is no account system, payment, deposit, withdrawal, prize, or backend.
+Royal Spin Demo 是一个用于前端状态、动画、音频和无障碍实验的响应式老虎机界面。项目只使用虚拟筹码，不包含账号、支付、充值、提现、奖品或后端服务。
 
-## Highlights
+## 主要能力
 
-- Five reels across three rows with five predefined paylines
-- Four deterministic payout tiers driven by an isolated game model
-- Single-spin and 20-spin automatic modes
-- Persistent local statistics and virtual-chip balance
-- Web Audio win cues with no bundled media files
-- Keyboard control, ARIA state, responsive rails, and CSS celebration effects
+- 五个转轴、三行符号和五条预设中奖线
+- 由独立游戏模型驱动的四档确定性奖励结果
+- 单次旋转与连续 20 次自动旋转
+- 本地持久化统计和虚拟筹码余额
+- 使用 Web Audio 生成中奖提示音，不捆绑媒体文件
+- 键盘控制、ARIA 状态、响应式侧栏和 CSS 庆祝效果
 
-## Prerequisites
+## 前置条件
 
-- Node.js 22 or newer
-- npm 10 or newer
+- Node.js 22+
+- npm 10+
 
-## Install and run
+## 安装与运行
 
 ```bash
 npm install
 npm run dev
 ```
 
-Open the local URL printed by Vite. Press `Space` outside a focused control to spin, or use the on-screen button.
+打开 Vite 输出的本地地址。焦点不在按钮或输入控件上时，可以按 `Space` 旋转，也可以使用屏幕按钮。
 
-## Validate
+## 验证
 
 ```bash
 npm test
 npm run build
 ```
 
-The tests exercise constants, grid invariants, and all four payout tiers with deterministic random sources. The production build also runs strict TypeScript checking.
+测试使用确定性随机源覆盖常量、网格不变量和四档奖励结果；生产构建还会执行严格 TypeScript 检查。
 
-## Project structure
+## 目录结构
 
 ```text
-src/App.tsx          Interface state, animations, audio, and controls
-src/game-model.ts    Symbols, paylines, bets, and payout outcomes
-src/styles.css       Responsive machine, side rails, and effects
-src/main.tsx         React entry point
-tests/               Deterministic game-model tests
+src/App.tsx          界面状态、动画、音频与控制
+src/game-model.ts    符号、中奖线、下注与奖励结果
+src/styles.css       响应式机台、侧栏和视觉效果
+src/main.tsx         React 入口
+tests/               确定性游戏模型测试
 ```
 
-## Known limitations
+## 已知限制
 
-- Outcome thresholds are intentionally fixed for demonstration and are not a regulated return-to-player model.
-- `Math.random()` is suitable for a visual demo, not for wagering or security-sensitive decisions.
-- Local progress is stored only in the current browser.
-- Some navigation buttons are decorative interface elements.
+- 结果阈值只用于界面演示，不是受监管的返奖率模型。
+- `Math.random()` 适合视觉演示，不适合赌博或安全敏感决策。
+- 进度只保存在当前浏览器。
+- 部分导航按钮仅为装饰性界面元素。
 
-## Provenance
+## 来源
 
-The original Codex-assisted prototype was created on 2026-08-15. This repository is a clean standalone reconstruction of its code-generated game core. Third-party-inspired metadata, generic Sites infrastructure, hosting configuration, template examples, build caches, generated outputs, and the original Git history were excluded. No external art, audio, fonts, or user data are included.
+原始 Codex 辅助原型创建于 2026-08-15。本仓库是其代码生成游戏核心的干净独立重建版。第三方启发元数据、通用 Sites 基础设施、托管配置、模板示例、构建缓存、生成输出和原始 Git 历史均已排除。仓库不含外部图片、音频、字体或用户数据。
 
-No open-source license is included; default copyright applies.
+本仓库未附加开源许可证，适用默认版权限制。
