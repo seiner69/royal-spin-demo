@@ -2,6 +2,7 @@ import { useCallback, useEffect, useMemo, useState } from "react";
 import type { CSSProperties } from "react";
 import { BETS, STARTING_BALANCE, SYMBOLS, makeOutcome, randomGrid } from "./game-model";
 import type { Outcome, SymbolKey } from "./game-model";
+import { readSavedProgress, writeSavedProgress } from "./persistence";
 
 function formatNumber(value: number) {
   return new Intl.NumberFormat("zh-CN").format(value);
@@ -54,32 +55,19 @@ export default function Home() {
   const jackpot = useMemo(() => 8_888_888 + spins * 137, [spins]);
 
   useEffect(() => {
-    try {
-      const saved = window.localStorage.getItem("royal-spin-save");
-      if (saved) {
-        const parsed = JSON.parse(saved) as {
-          balance?: number;
-          totalWin?: number;
-          spins?: number;
-          wins?: number;
-        };
-        if (typeof parsed.balance === "number") setBalance(parsed.balance);
-        if (typeof parsed.totalWin === "number") setTotalWin(parsed.totalWin);
-        if (typeof parsed.spins === "number") setSpins(parsed.spins);
-        if (typeof parsed.wins === "number") setWins(parsed.wins);
-      }
-    } catch {
-      // A damaged local save should never block the game.
+    const saved = readSavedProgress();
+    if (saved) {
+      if (saved.balance !== undefined) setBalance(saved.balance);
+      if (saved.totalWin !== undefined) setTotalWin(saved.totalWin);
+      if (saved.spins !== undefined) setSpins(saved.spins);
+      if (saved.wins !== undefined) setWins(saved.wins);
     }
     setHydrated(true);
   }, []);
 
   useEffect(() => {
     if (!hydrated) return;
-    window.localStorage.setItem(
-      "royal-spin-save",
-      JSON.stringify({ balance, totalWin, spins, wins }),
-    );
+    writeSavedProgress({ balance, totalWin, spins, wins });
   }, [balance, hydrated, spins, totalWin, wins]);
 
   const spin = useCallback(

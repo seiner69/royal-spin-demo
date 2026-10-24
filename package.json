@@ -8,8 +8,8 @@
     "build": "npm run typecheck && vite build",
     "preview": "vite preview",
     "typecheck": "tsc --noEmit",
-    "test:compile": "tsc src/game-model.ts --outDir .test-build --target ES2022 --module ES2022 --moduleResolution Bundler --skipLibCheck",
-    "test": "npm run test:compile && node --test tests/game-model.test.mjs"
+    "test:compile": "tsc src/game-model.ts src/persistence.ts --outDir .test-build --target ES2022 --module ES2022 --moduleResolution Bundler --skipLibCheck",
+    "test": "npm run test:compile && node --test tests/game-model.test.mjs tests/persistence.test.mjs tests/app-persistence.test.mjs"
   },
   "dependencies": {
     "react": "19.2.6",
